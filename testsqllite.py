@@ -8,12 +8,14 @@ cur = con.cursor()
 # print('One user added')
 
 ### Read all from Users
-# for row in cur.execute('SELECT * FROM Users') :
+# for row in cur.execute("SELECT * FROM Users WHERE Name = 'Zen'") :
 #     print(row)
 
-cur.execute('SELECT * FROM Users')
-print(cur.fetchone())
+name = 'Zen'
+cur.execute(f"SELECT rowid, name, email FROM Users WHERE Name = '{name}'")
+row = cur.fetchone()
+print(f'id: {row[0]} name: {row[1]} email: {row[2]}')
 
-con.commit()
+# con.commit()
 
 con.close()
